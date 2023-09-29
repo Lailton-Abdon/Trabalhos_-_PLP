@@ -1,0 +1,163 @@
+#Questão - 01
+
+n1 = float(input("Digite a sua primeira nota: "))
+n2 = float(input("Digite a sua segunda nota: "))
+
+print("A média das notas é: ", ((n1 + n2) / 2))
+
+
+#Questão - 02
+
+def media():
+    n1 = float(input("Digite sua primeira nota: "))
+    n2 = float(input("Digite sua segunda nota: "))
+    return (n1 + n2) / 2
+
+print("Sua média é: ", media())
+
+
+#Questão - 03
+
+preco = float(input("Digite o preço da mercadoria: "))
+desconto = float(input("Digite o percentual de desconto: "))
+
+desconto_valor = preco * (desconto / 100)
+preco_final = preco - desconto_valor
+
+print(f"\nValor do desconto: R${desconto_valor:.2f}\nPreço a pagar: R${preco_final:.2f}")
+
+
+#Questão - 04
+
+cigarros_por_dia = int(input("Digite a quantidade de cigarros fumados por dia: "))
+anos_fumados = int(input("Digite a quantidade de anos que já fumou: "))
+
+minutos_perdidos = cigarros_por_dia * anos_fumados * 365 * 10
+
+dias_perdidos = minutos_perdidos / (24 * 60)
+
+print(f"Ele perderá aproximadamente {dias_perdidos:.2f} dias de vida.")
+
+
+#Questão - 05
+
+tabela_precos = {1: 0.50, 2: 1.00, 3: 4.00, 5: 7.00, 9: 8.00}
+total_compras = 0.0
+
+while True:
+    codigo = int(input("Digite o código do produto ou [0] para encerrar: "))
+
+    if codigo == 0:
+        break
+    elif codigo in tabela_precos:
+        quantidade = int(input("Digite a quantidade comprada: "))
+        total_compras += tabela_precos[codigo] * quantidade
+    else:
+        print("Código inválido. Tente novamente.")
+
+print(f"Total das compras: R${total_compras:.2f}")
+
+
+#Questão - 06
+
+vetor = []
+for i in range(8):
+    valor = int(input(f"Digite o valor para a posição {i}: "))
+    vetor.append(valor)
+
+x = int(input("Digite o valor de [X]: "))
+y = int(input("Digite o valor de [Y]: "))
+
+if 0 <= x < 8 and 0 <= y < 8:
+    result = vetor[x] + vetor[y]
+    print(f"A soma dos valores nas posições {x} e {y} é: {result}")
+else:
+    print("Valores de X e Y fora do vetor.")
+
+
+#Questão - 07
+
+vetor = []
+
+for i in range(10):
+    valor = int(input(f"Digite o valor {i + 1}: "))
+    vetor.append(valor)
+
+maior = max(vetor)
+menor = min(vetor)
+
+
+maior_que_5 = sum(1 for elemento in vetor if elemento > 5)
+
+total = sum(vetor)
+
+media = total / 10
+
+print(f"O maior elemento do vetor é {maior}")
+print(f"O menor elemento do vetor é {menor}")
+print(f"A quantidade de elementos maiores que 5 é: {maior_que_5}")
+print(f"A soma de todos os elementos é de {total}")
+print(f"A média de todos os elementos é de {media:.2f}")
+
+
+#Questão - 08
+
+def main():
+    agenda = {}
+
+    while True:
+        cpf = input("Digite o CPF: ")
+        nome = input("Digite o nome: ")
+        idade = input("Digite a idade: ")
+        telefone = input("Digite o telefone: ")
+
+        agenda[cpf] = {"nome": nome, "idade": idade, "telefone": telefone}
+
+        continuar = input("Deseja continuar: [s] ou [n]): ")
+        if continuar.lower() != "s":
+            break
+
+    for cpf, contato in agenda.items():
+        print(f"CPF: {cpf}, Nome: {contato['nome']}, Idade: {contato['idade']}, Telefone: {contato['telefone']}")
+
+if __name__ == "__main__":
+    main()
+
+
+#Questão - 09
+
+def calcular_desconto_inss(salario_bruto):
+    return salario_bruto * 0.08
+
+def calcular_desconto_irpf(salario_bruto):
+    return salario_bruto * 0.10 if salario_bruto > 1903.98 else 0
+
+def calcular_salario_liquido(salario_bruto, desconto_inss, desconto_irpf):
+    return salario_bruto - desconto_inss - desconto_irpf
+
+def main():
+    folha_de_pagamento = {}
+
+    while True:
+        nome = input("Digite o nome: ")
+        salario_bruto = float(input("Digite o salário bruto: "))
+
+        desconto_inss = calcular_desconto_inss(salario_bruto)
+        desconto_irpf = calcular_desconto_irpf(salario_bruto)
+        salario_liquido = calcular_salario_liquido(salario_bruto, desconto_inss, desconto_irpf)
+
+        folha_de_pagamento[nome] = {
+            "salario_bruto": salario_bruto,
+            "desconto_inss": desconto_inss,
+            "desconto_irpf": desconto_irpf,
+            "salario_liquido": salario_liquido,
+        }
+
+        if input("Deseja continuar? (s/n): ").lower() != "s":
+            break
+
+    for nome, dados in folha_de_pagamento.items():
+        print(f"Nome: {nome}, Salário Bruto: {dados['salario_bruto']}, Desconto INSS: {dados['desconto_inss']}, Desconto IRPF: {dados['desconto_irpf']}, Salário Líquido: {dados['salario_liquido']}")
+
+if __name__ == "__main__":
+    main()
